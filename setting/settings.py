@@ -14,7 +14,7 @@ START_TERNS_DIR = os.path.join(BASE_DIR,'terms\\start_term')
 BYE_TERMS_FILE = os.path.join(BASE_DIR,"terms\\bye_term\\bye.wav")
 PLAY_MEDIA = r"D:/ffmpeg/bin/ffplay"
 TRANSVERTER=r"D:/ffmpeg/bin/ffmpeg"
-msc_x64_FILE=r"D:/Windows_iat1220_tts_online1220_5b559fed/bin/msc_x64.dll"  # 动态链接库路径
+msc_x64_FILE= os.path.join(BASE_DIR,"database\\dll_file\\msc_x64.dll") # 动态链接库路径
 
 NAME = "XbtRobot"
 Storage_Adapter='chatterbot.storage.MongoDatabaseAdapter'
