@@ -8,13 +8,13 @@ SPEAK_PATH = os.path.join(BASE_DIR,"database\\vad_speak\\")
 SPEACK_FILE = os.path.join(BASE_DIR,"database\\speak\\test.wav")
 SPEACK_TERMS_FILE = os.path.join(BASE_DIR,"terms\\speak_term\\speak_error.wav")
 LISTEN_FILE =os.path.join(BASE_DIR,"database\\listen\\1kXF.wav")
+Initial_LISTEN_FILE =os.path.join(BASE_DIR,"database\\listen\\initial_test.wav")  # 语音初始化文件
 LISTEN_TERMS_FILE =os.path.join(BASE_DIR,"terms\\listen_term\\listen_error.wav")
 START_TERNS_DIR = os.path.join(BASE_DIR,'terms\\start_term')
 BYE_TERMS_FILE = os.path.join(BASE_DIR,"terms\\bye_term\\bye.wav")
 PLAY_MEDIA = r"D:/ffmpeg/bin/ffplay"
 TRANSVERTER=r"D:/ffmpeg/bin/ffmpeg"
-
-SDK_FILE =r"E:\Windows_aisound_exp1208_aitalk_exp1208_awaken_exp1208_iat1208_tts_online1208_5b559fed\bin\msc_x64.dll"
+msc_x64_FILE=r"D:/Windows_iat1220_tts_online1220_5b559fed/bin/msc_x64.dll"  # 动态链接库路径
 
 NAME = "XbtRobot"
 Storage_Adapter='chatterbot.storage.MongoDatabaseAdapter'
@@ -45,10 +45,15 @@ Train_Features_File = os.path.join(BASE_DIR,"classifier\\database\\features\\tra
 Tulin_API_KEY = "164391ebc59c48a88c7c4cc41682e5a3"
 SYNO_FILES=os.path.join(BASE_DIR,'synom\\new_synomys.json')
 
-#百度token配置参数
-Grant_type = "client_credentials"
-Client_id = "6vnvj2pvAFfbUVcXuUoW4YeD"
-Client_secret = "Vm7fHywZubDqk2oNKNG9OpF5QTNtL5hG"
+#讯飞配置
+LOGIN_PARAMS = b"appid = 5b559fed, work_dir = ."    # 语音识别登录参数，apppid一定要和你的下载SDK对应
+APPID = "5b574774"
+ASR_API_KEY = "771cb83d1fd6a30a5bba996e4650ecb3"
+TTS_API_KEY = "2ae7d8d0cdddeb17aaa6864378dddab2"
+URL = "http://api.xfyun.cn/v1/service/v1/tts"
+AUE = "raw"       # 得到语音文件以.wav格式写入
+HEAD_PARAM = "{\"aue\":\"" + AUE + "\",\"auf\":\"audio/L16;rate=16000\",\"voice_name\":\"xiaoyan\",\"engine_type\":\"intp65\"}"
+
 
 #文本分类器配置参数
 STOPWORDS = os.path.join(BASE_DIR,'database\\features\\stop_words.pkl')
