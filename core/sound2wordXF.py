@@ -54,7 +54,7 @@ def wordfromS(audioFilePath):
     r = requests.post(URL, headers=getHeader(aue, engineType), data=getBody(audioFilePath))
     re = r.content.decode('utf-8')
     retdata = eval(re)  #通过eval函数将字符串转换为字典
-    print(retdata['data'])
+    #print(retdata['data'])
 
 
     if retdata['data'] != '':

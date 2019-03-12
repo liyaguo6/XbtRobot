@@ -58,3 +58,6 @@ def tts_main(words):
         f.write(resp)
         f.close()
 
+if __name__ == '__main__':
+    # file = wav_to_pcm("test.wav")
+    tts_main('请问还需要我继续说嘛')
