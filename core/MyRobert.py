@@ -5,7 +5,6 @@ from setting import settings
 
 class Bot(ChatBot):
     def __init__(self, name, **kwargs):
-        print(kwargs)
         super().__init__(name, **kwargs)
         # print(kwargs)
         # self.name =name
@@ -23,9 +22,9 @@ class Bot(ChatBot):
                    )
         return chat
 
-if __name__ == '__main__':
-    bot = Bot.chattbot('XbtCorpus1')
-    bot.get_response()
+# if __name__ == '__main__':
+    # bot = Bot.chattbot('XbtCorpus1')
+    # bot.get_response()
 # bot = XbtBot("Terminal",
 #               storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
 #               logic_adapters=[

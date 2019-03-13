@@ -9,7 +9,10 @@ import wave
 import numpy as np
 import webrtcvad
 import sys
-
+from setting import settings
+from core.MyRobert import MyThread
+from core import wav2pcm
+from core.utilties import random_start_terms
 CHUNK = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
@@ -27,8 +30,8 @@ class Monitor():
     def __init__(self):
         self.p = pyaudio.PyAudio()
         self.frames = []
-        self.count = 0
-        self.flag = False
+        # self.Voice = False
+        self.VoiceFlag =False
 
 
     def start(self):
@@ -40,30 +43,52 @@ class Monitor():
         self.frames = []
         print("开始缓存录音")
 
+    def run(self):
+        count = 0
+        while True:
+            count += 1
+            print("开始第" + str(count) + "次检测")  # 设置循环20次时，停止运行程序
+            res = self.monitor()
+
+            if res :
+                self.record()
+                self.stop()
+                self.write_audio_to_wave(settings.LISTEN_FILE)
+                # self.VoiceFlag= False
+                count = 0
+                break
+            # elif self.flag:
+            #     break
+            elif count == 10:  # 设置循环20次时，返回flag=True的信息
+                self.VoiceFlag = True
+                count =0
+                break
+            elif count == 3:
+                # t2 = MyThread(wav2pcm.audio_play, args=(self.start_term_path,))
+                # t2.start()
+                wav2pcm.audio_play(self.start_term_path)
 
     def monitor(self):
 
         # while True:
             self.start()
-            self.count += 1
-            print("开始第" + str(self.count) + "次检测")  # 设置循环20次时，停止运行程序
+        #     self.count += 1
+        #     print("开始第" + str(self.count) + "次检测")  # 设置循环20次时，停止运行程序
 
             for i in range(0, int(RATE/CHUNK*RECORD_SECONDS)):
                 data = self.stream.read(CHUNK)
                 self.frames.append(data)
             audio_data = np.fromstring(data, dtype=np.short)
-            large_sample_count = np.sum( audio_data > 800 )
+            # large_sample_count = np.sum( audio_data > 800 )
             temp = np.max(audio_data)   # 使用最大因音量来控制
             if temp > 800:
-                print('当前阈值：', temp)
                 return True
             else:
                 self.frames = []
 
-            while self.count == 10:     # 设置循环20次时，返回flag=True的信息
-                self.flag = True
-                break
-
+    @property
+    def start_term_path(self):
+        return random_start_terms()
 
     def record(self):
         # res = self.monitor()
@@ -116,15 +141,9 @@ class Monitor():
 
 if __name__ == '__main__':
     monitor = Monitor()
-    while True:
-        res = monitor.monitor()
-        if res and not monitor.flag:
-            monitor.record()
-            monitor.stop()
-            monitor.write_audio_to_wave('vad_test.wav')
-            break
-        elif monitor.flag:
-            break
+    for i in range(3):
+        monitor.run()
+
 
 
 

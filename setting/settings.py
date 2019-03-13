@@ -18,7 +18,7 @@ msc_x64_FILE= os.path.join(BASE_DIR,"database\\dll_file\\msc_x64.dll") # 动态�
 
 NAME = "XbtRobot"
 Storage_Adapter='chatterbot.storage.MongoDatabaseAdapter'
-THRESHOLD = 0.65  #本地数据库识别可信度阈值
+THRESHOLD = 0.7  #本地数据库识别可信度阈值
 Logic_Adapters=[
               {'import_path': "chatterbot.logic.BestMatch"},
                 {
