@@ -149,7 +149,7 @@ class XbtBot:
             data = wf.readframes(CHUNK)
             stream.write(data)
             time_now = time.time()
-            if (time_now - time_start > 8 and have==0):
+            if (time_now - time_start > 30 and have==0):
                 have=1
                 with self.xlock:
                     self.eve.clear()
