@@ -43,7 +43,7 @@ class Monitor():
         self.frames = []
         print("开始缓存录音")
 
-    def run(self):
+    def run(self,para):
         count = 0
         while True:
             count += 1
@@ -66,7 +66,8 @@ class Monitor():
             elif count == 3:
                 # t2 = MyThread(wav2pcm.audio_play, args=(self.start_term_path,))
                 # t2.start()
-                wav2pcm.audio_play(self.start_term_path)
+                if (para==0):
+                    wav2pcm.audio_play(self.start_term_path)
 
     def monitor(self):
 
@@ -142,7 +143,7 @@ class Monitor():
 if __name__ == '__main__':
     monitor = Monitor()
     for i in range(3):
-        monitor.run()
+        monitor.run(0)
 
 
 

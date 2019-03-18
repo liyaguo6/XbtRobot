@@ -16,6 +16,9 @@ PLAY_MEDIA = r"D:/ffmpeg/bin/ffplay"
 TRANSVERTER=r"D:/ffmpeg/bin/ffmpeg"
 msc_x64_FILE= os.path.join(BASE_DIR,"database\\dll_file\\msc_x64.dll") # 动态链接库路径
 
+long_limit = 150 # 切割答案长度门限
+first_len =  50 # 播放语音第一段长度
+
 NAME = "XbtRobot"
 Storage_Adapter='chatterbot.storage.MongoDatabaseAdapter'
 THRESHOLD = 0.7  #本地数据库识别可信度阈值
