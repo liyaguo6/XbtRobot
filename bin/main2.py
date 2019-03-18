@@ -38,6 +38,7 @@ class XbtBot():
         self.monitor=Monitor()
         self.face_detect = FaceDetect('../database/haarcascades/haarcascade_frontalface_alt2.xml')
         self.face_detect.detect()
+        self.last_answer= None
         self.eve_con = threading.Event()
         self.xlock=threading.Lock()
         self.resp_next = None
@@ -57,7 +58,7 @@ class XbtBot():
         tmp = re.sub("[！，。？、~,]", "", tmp1)
         if self.have == 1:
             if self.speaking == 0:
-                print ('//////////////////////////////////////////////////////')
+                print ('///////////////////////////  '+tmp+'   -------------------')
                 res = re.findall(r'(接着说|继续说)', tmp)
                 if(len(res)<=0):
                     self.end_do()
@@ -65,6 +66,7 @@ class XbtBot():
                     with self.xlock:
                         self.eve_con.set()
                         self.speaking = 1
+
         else:
             self.words=tmp
 
@@ -122,6 +124,7 @@ class XbtBot():
 
     def word2vice(self):
         start3 = time.time()
+        self.response=str(self.response)
         if(len(self.response)>settings.long_limit):
             t=len(self.response)
             for index,uchar in enumerate(self.response):
@@ -137,6 +140,7 @@ class XbtBot():
                 self.speaking=0
 
             run_tts('请问还需要我继续说嘛')
+            #time.sleep(2)
             self.eve_con.wait() # 暂停
             run_tts(self.resp_next)
         else:
@@ -154,6 +158,7 @@ class XbtBot():
             self.have=0
             self.speaking=0
             self.eve_con.set()
+            self.last_answer=None
         while True:
             # try:
                 # 开启人脸检测功能
@@ -173,8 +178,14 @@ class XbtBot():
                                 continue
 
                             if self.words is not None:
-                                self.think()
-                                #self.response = '在拥有亚当斯、维埃拉的时代，阿森纳曾经有过充满血性的时候，并且也创造过辉煌。但是随着球队风格越来越技术流，加上主帅温格的性格使然，号称“枪手”的阿森纳，却逐渐丧失了血性，在面对曼联、利物浦，甚至一些英超中下游踢法强硬的球队时，经常会被欺负。这种欺负不是技战术方面的问题，往往都是在硬度、精气神上被对方碾压，并且最终导致某场比赛比分上、某项赛事争夺上的失利。'
+                                if (len(re.findall(r'(再说一遍|重复一遍|再说一次|我没听清楚)',self.words)) > 0) and self.last_answer is not None:
+                                    self.response = self.last_answer
+                                else:
+
+                                   # self.response = '在拥有亚当斯、维埃拉的时代，阿森纳曾经有过充满血性的时候，并且也创造过辉煌。但是随着球队风格越来越技术流，加上主帅温格的性格使然，号称“枪手”的阿森纳，却逐渐丧失了血性，在面对曼联、利物浦，甚至一些英超中下游踢法强硬的球队时，经常会被欺负。这种欺负不是技战术方面的问题，往往都是在硬度、精气神上被对方碾压，并且最终导致某场比赛比分上、某项赛事争夺上的失利。'
+
+                                    self.think()
+
                                 with self.xlock:
                                     self.have = 1
                                     self.speaking=1
@@ -182,6 +193,7 @@ class XbtBot():
                                 t=MyThread(self.word2vice,)
                                 t.setDaemon(True)
                                 t.start()
+                                self.last_answer=self.response
                                  # self.word2vice()
                             else:
                                 wav2pcm.audio_play(settings.SPEACK_TERMS_FILE)
