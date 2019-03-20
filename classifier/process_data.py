@@ -16,7 +16,7 @@ def get_data(path_raw,path_oth,save_path=None):
     process_data[0] = random.sample(list(df_oth.loc[:,'question']),40000)
     return process_data
 
-if __name__ == '__main__':
-    ret=get_data()
-    for index,values in ret.items():
-        print('class%s has %s samples'%(index,len(values)))
+# if __name__ == '__main__':
+#     ret=get_data()
+#     for index,values in ret.items():
+#         print('class%s has %s samples'%(index,len(values)))

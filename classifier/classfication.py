@@ -4,7 +4,7 @@ import jieba  #处理中文
 import collections
 import pickle
 import jieba.analyse as analyse
-import get_data
+from  process_data import get_data
 # jieba.set_dictionary("./dict.txt")
 
 

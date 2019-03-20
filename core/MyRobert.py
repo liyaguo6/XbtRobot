@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+'''
+@auther: Liya guo
+@summary: chatterbot 对象封装
+'''
 from chatterbot import ChatBot
 import threading
 from setting import settings

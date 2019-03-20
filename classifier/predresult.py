@@ -1,10 +1,16 @@
-import pandas as pd
+# -*- coding: utf-8 -*-
+'''
+@auther: Liya guo
+@summary: 分类器预测
+'''
 
 import jieba
 import pickle
 from sklearn.naive_bayes import MultinomialNB  # 多项式分类
 import collections
 from setting import settings
+import logging
+jieba.setLogLevel(logging.INFO)
 
 class Predict:
     def __init__(self,**kwargs):

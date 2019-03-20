@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+'''
+@auther: Liya guo
+@summary: 人脸检测
+'''
 import cv2
 import os
 import time
@@ -7,24 +12,6 @@ import threading
 import numpy as np
 
 
-# cap = cv2.VideoCapture(0)
-# while True:
-#     # 抓取一帧视频q
-#     ret, frame = cap.read()
-#     # Our operations on the frame come here
-#
-#     # Display the resulting frame
-#     # 将原彩色图转换成灰度图
-#     gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-#     faces = face_cascade.detectMultiScale(gray, 1.2, 8)
-#     for (x, y, w, h) in faces:
-#     #     # 在原彩色图上画人脸矩形框
-#         img=cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-#         cv2.imshow('frame', img)
-#         # print(x, y, w, h)
-#     # 遍历人脸检测结果(x,y)左上角坐标，(x+w,y+h)右下角坐标
-#     if cv2.waitKey(1) & 0xFF == ord('q'):
-#         break
 
 class FaceRecon():
     def __init__(self,path):

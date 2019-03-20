@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+'''
+@auther: liya guo
+@summary: 利用chatterbot框架训练机器人
+'''
 from chatterbot.trainers import ChatterBotCorpusTrainer
 import os,sys,re,time
 BASE_DIR =os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

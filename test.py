@@ -1,9 +1,9 @@
 import cv2,os
 from chatterbot import ChatBot
 import pandas as pd
-# from core.speakout import tts_main
+from core.speakout import tts_main
 from chatterbot.trainers import ChatterBotCorpusTrainer
-# tts_main("请讲")
+# tts_main("是否还需要我继续说")
 
 #
 # df = pd.read_csv(r'D:\MyProj\XbtChatterbot2018\xbtRobot1.1\trainning\gover2.csv', header=0 \
@@ -29,27 +29,35 @@ import json
 #         print(len(load_dict['conversations']))
 
 
-bot = ChatBot("XbtRobot",
-          storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
-          logic_adapters=[
-              {'import_path': "chatterbot.logic.BestMatch"},
-          ],
-          filters=[
-              'chatterbot.filters.RepetitiveResponseFilter'
-          ],
-          # trainer='chatterbot.trainers.ListTrainer',
-          input_adapter="chatterbot.input.VariableInputTypeAdapter",
-          output_adapter="chatterbot.output.OutputAdapter",
-          database_uri="mongodb://localhost:27017/",
-          database="XbtCorpus4",
-          read_only=True,
-          # trainer='chatterbot.trainers.ListTrainer'
-          )
-bot.set_trainer(ChatterBotCorpusTrainer)
+# bot = ChatBot("XbtRobot",
+#           storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
+#           logic_adapters=[
+#               {'import_path': "chatterbot.logic.BestMatch"},
+#           ],
+#           filters=[
+#               'chatterbot.filters.RepetitiveResponseFilter'
+#           ],
+#           # trainer='chatterbot.trainers.ListTrainer',
+#           input_adapter="chatterbot.input.VariableInputTypeAdapter",
+#           output_adapter="chatterbot.output.OutputAdapter",
+#           database_uri="mongodb://localhost:27017/",
+#           database="XbtCorpus4",
+#           read_only=True,
+#           # trainer='chatterbot.trainers.ListTrainer'
+#           )
+# bot.set_trainer(ChatterBotCorpusTrainer)
+#
+# bot.trainer.export_for_training('./XbtCorpus4.json')
+# with open('./XbtCorpus4.json','r') as f:
+#     data=json.load(f)['conversations']
+#     que,ans = list(zip(*data))
+#     df=pd.DataFrame({'ques':pd.Series(que),'answ':pd.Series(ans)})
+#     df.to_csv('./XbtCorpus4.csv',encoding='gbk')
 
-bot.trainer.export_for_training('./XbtCorpus4.json')
-with open('./XbtCorpus4.json','r') as f:
-    data=json.load(f)['conversations']
-    que,ans = list(zip(*data))
-    df=pd.DataFrame({'ques':pd.Series(que),'answ':pd.Series(ans)})
-    df.to_csv('./XbtCorpus4.csv',encoding='gbk')
+
+# import re
+# while 1:
+#     words=input('keywords>>')
+#     result=re.search(r'(不要说了|不想听)', words)
+#     print(result)
+print(len('我是来自新巴特的Oh boy，我是巧妙的工程师们造出来的，我现在还是个宝宝哦。'))

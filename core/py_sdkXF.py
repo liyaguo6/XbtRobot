@@ -87,7 +87,6 @@ class Msp:
                 laststr += '讯飞语音识别失败'
                 break
 
-        print(laststr)
         ret = dll.QISRSessionEnd(sessionID,None)
         # print('end ret: ', ret)
         return laststr

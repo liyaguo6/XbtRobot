@@ -31,7 +31,7 @@ class Monitor():
         self.p = pyaudio.PyAudio()
         self.frames = []
         # self.Voice = False
-        self.VoiceFlag =False
+        self.NoVoiceFlag =False
 
 
     def start(self):
@@ -41,9 +41,8 @@ class Monitor():
                         input=True,
                         frames_per_buffer=CHUNK)
         self.frames = []
-        print("开始缓存录音")
 
-    def run(self):
+    def run(self,isinterrupt=False):
         count = 0
         while True:
             count += 1
@@ -60,13 +59,14 @@ class Monitor():
             # elif self.flag:
             #     break
             elif count == 10:  # 设置循环20次时，返回flag=True的信息
-                self.VoiceFlag = True
+                self.NoVoiceFlag = True
                 count =0
                 break
-            elif count == 3:
-                # t2 = MyThread(wav2pcm.audio_play, args=(self.start_term_path,))
-                # t2.start()
-                wav2pcm.audio_play(self.start_term_path)
+            if isinterrupt ==False:
+                if count == 3:
+                    # t2 = MyThread(wav2pcm.audio_play, args=(self.start_term_path,))
+                    # t2.start()
+                    wav2pcm.audio_play(self.start_term_path)
 
     def monitor(self):
 

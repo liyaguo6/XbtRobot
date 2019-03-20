@@ -12,6 +12,7 @@ Initial_LISTEN_FILE =os.path.join(BASE_DIR,"database\\listen\\initial_test.wav")
 LISTEN_TERMS_FILE =os.path.join(BASE_DIR,"terms\\listen_term\\listen_error.wav")
 START_TERNS_DIR = os.path.join(BASE_DIR,'terms\\start_term')
 BYE_TERMS_FILE = os.path.join(BASE_DIR,"terms\\bye_term\\bye.wav")
+INTERRUPT_TERMS_FILE = os.path.join(BASE_DIR,"terms\\interrupt\\inp.wav")
 PLAY_MEDIA = r"D:/ffmpeg/bin/ffplay"
 TRANSVERTER=r"D:/ffmpeg/bin/ffmpeg"
 msc_x64_FILE= os.path.join(BASE_DIR,"database\\dll_file\\msc_x64.dll") # 动态链接库路径
@@ -45,6 +46,12 @@ Train_Features_File = os.path.join(BASE_DIR,"classifier\\database\\features\\tra
 Tulin_API_KEY = "164391ebc59c48a88c7c4cc41682e5a3"
 SYNO_FILES=os.path.join(BASE_DIR,'synom\\new_synomys.json')
 
+#百度token配置参数
+Grant_type = "client_credentials"
+Client_id = "6vnvj2pvAFfbUVcXuUoW4YeD"
+Client_secret = "Vm7fHywZubDqk2oNKNG9OpF5QTNtL5hG"
+
+
 #讯飞配置
 LOGIN_PARAMS = b"appid = 5b559fed, work_dir = ."    # 语音识别登录参数，apppid一定要和你的下载SDK对应
 APPID = "5b574774"
@@ -65,5 +72,11 @@ IP = '127.0.0.1'
 PORT =27017
 DB ="unquestion"
 TABLE='mtest'
+
+
+#关键字
+BYEKEYWODS= r'(再见|goodbye|byebye|拜拜|退出|再会|待会见)'
+ORDERKEYWORDS = r'(是的|继续说|我想听|接着说)'
+ORDERKEYWORDS1 = r'(不要说了|不想听|不用说了)'
 
 
